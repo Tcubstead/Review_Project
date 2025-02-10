@@ -1,9 +1,11 @@
 //Thomas Cubstead
 //2-10-25
 //Review_Project
-//main
+//Rock_Paper_Scissors
+//This program will prompt a user to play a gmae of rock paper scissors and track the score until the user is done then a winner will be displayed based on the score.
 
 #include <iostream>
+using namespace std;
 
 int main()
 {
