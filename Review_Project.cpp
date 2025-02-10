@@ -41,16 +41,14 @@ string winSelection(string userChoice, string computerChoice) {
 void tournament() {
 	int userScore = 0;
 	int computerScore = 0;
-	const int MIN = 1;
-	const int MAX = 3;
 
 	random_device engine;
 
-	uniform_int_distribution<int> compValue(MIN, MAX);
+	uniform_int_distribution<int>compValue(1, 3);
 
 	//converts a random number into rock, paper, or scissors for the computer selection
 	while (true) {
-		int computerNumber = compValue(MIN, MAX);
+		int computerNumber = compValue(1,3);
 		string computerChoice;
 		if (computerNumber == 1) {
 			computerChoice == "rock";
@@ -62,16 +60,16 @@ void tournament() {
 			computerChoice == "scissors";
 		}
 
-		string userChoice();
+		string uChoice = userChoice();
 
 		//ends the tournament
-		if (userChoice == "quit") {
+		if (uChoice == "quit") {
 			break;
 		}
 
 		cout << "The computer chose: " << computerChoice << endl;
 
-		string winner = winSelection(userChoice, computerChoice);
+		string winner = winSelection(uChoice, computerChoice);
 
 		if (winner == "human") {
 			cout << "YOU WON THIS ROUND!";
