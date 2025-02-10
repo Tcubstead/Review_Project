@@ -42,22 +42,22 @@ void tournament() {
 	int userScore = 0;
 	int computerScore = 0;
 
-	random_device engine;
-
-	uniform_int_distribution<int>compValue(1, 3);
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dis(1, 3);
 
 	//converts a random number into rock, paper, or scissors for the computer selection
 	while (true) {
-		int computerNumber = compValue(1,3);
+		int computerNumber = dis(gen);
 		string computerChoice;
 		if (computerNumber == 1) {
-			computerChoice == "rock";
+			computerChoice = "rock";
 		}
 		else if (computerNumber == 2) {
-			computerChoice == "paper";
+			computerChoice = "paper";
 		} 
 		else if (computerNumber == 3) {
-			computerChoice == "scissors";
+			computerChoice = "scissors";
 		}
 
 		string uChoice = userChoice();
@@ -72,10 +72,10 @@ void tournament() {
 		string winner = winSelection(uChoice, computerChoice);
 
 		if (winner == "human") {
-			cout << "YOU WON THIS ROUND!";
+			cout << "YOU WON THIS ROUND!" << endl;
 			userScore++;
 		} else if (winner == "computer") {
-			cout << "THE COMPUTER WON THIS ROUND!";
+			cout << "THE COMPUTER WON THIS ROUND!" << endl;
 			computerScore++;
 		} else {
 			cout << "DRAW!";
@@ -94,7 +94,7 @@ void tournament() {
 }
 
 int main() {
-	tournament;
+	tournament();
 	return 0;
 }
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
