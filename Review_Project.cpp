@@ -17,7 +17,7 @@ string userChoice() {
 		cin >> choice;
 		//turn choice lowercase for code flow
 		for (auto & c : choice) c = tolower(c);
-		if (choice == 'rock' || choice == 'paper' || choice == 'scissors' || choice == 'quit') {
+		if (choice == "rock" || choice == "paper" || choice == "scissors" || choice == "quit") {
 			return choice;
 		} else {
 			cout << "you must input rock, paper, scissors, or quit, please try again" << endl;
@@ -31,24 +31,74 @@ string winSelection(string userChoice, string computerChoice) {
 		return "draw";
 	}
 	if ((userChoice == "rock" && computerChoice == "scissors") || (userChoice == "paper" && computerChoice == "rock") || (userChoice == "scissors" && computerChoice == "paper")) {
-		return "YOU WIN!";
+		return "human";
 	} else {
-		return "COMPUTER WINS!";
+		return "computer";
 	}
 }
 
-int main() {
-	//max and min values to simulated rock paper scissor values
+
+void tournament() {
+	int userScore = 0;
+	int computerScore = 0;
 	const int MIN = 1;
 	const int MAX = 3;
 
 	random_device engine;
 
-	uniform_int_distribution<int>rValue(MIN, MAX);
-	cout << rValue(engine) << endl;
-	return 0;
+	uniform_int_distribution<int> compValue(MIN, MAX);
+
+	//converts a random number into rock, paper, or scissors for the computer selection
+	while (true) {
+		int computerNumber = compValue(MIN, MAX);
+		string computerChoice;
+		if (computerNumber == 1) {
+			computerChoice == "rock";
+		}
+		else if (computerNumber == 2) {
+			computerChoice == "paper";
+		} 
+		else if (computerNumber == 3) {
+			computerChoice == "scissors";
+		}
+
+		string userChoice();
+
+		//ends the tournament
+		if (userChoice == "quit") {
+			break;
+		}
+
+		cout << "The computer chose: " << computerChoice << endl;
+
+		string winner = winSelection(userChoice, computerChoice);
+
+		if (winner == "human") {
+			cout << "YOU WON THIS ROUND!";
+			userScore++;
+		} else if (winner == "computer") {
+			cout << "THE COMPUTER WON THIS ROUND!";
+			computerScore++;
+		} else {
+			cout << "DRAW!";
+		}
+		
+	}
+	cout << endl;
+	if (userScore > computerScore) {
+		cout << "YOUR WON THE TOURNAMENT!!!";
+	} else if (computerScore > userScore) {
+		cout << "THE COMPUTER WON THIS TIME BETTER LUCK NEXT TIME!!!";
+	} else {
+			cout << "THE TOURNAMENT IS A DRAW, WELL PLAYED!";
+	}
+	cout << "Final score: USER: " << userScore << " COMPUTER: " << computerScore << endl;
 }
 
+int main() {
+	tournament;
+	return 0;
+}
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
