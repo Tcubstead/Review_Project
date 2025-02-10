@@ -42,6 +42,7 @@ void tournament() {
 	int userScore = 0;
 	int computerScore = 0;
 
+	//selects random number for the computer choice
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_int_distribution<> dis(1, 3);
@@ -71,6 +72,7 @@ void tournament() {
 
 		string winner = winSelection(uChoice, computerChoice);
 
+		//displays the winner of the round
 		if (winner == "human") {
 			cout << "YOU WON THIS ROUND!" << endl;
 			userScore++;
@@ -82,6 +84,7 @@ void tournament() {
 		}
 		
 	}
+	//displays the winner of the tournament
 	cout << endl;
 	if (userScore > computerScore) {
 		cout << "YOUR WON THE TOURNAMENT!!!";
