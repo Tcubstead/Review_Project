@@ -1,9 +1,18 @@
 //Thomas Cubstead
 //2-10-25
 //Review_Project
-//main
+//Grade_Book
+// this program will take the average of a set of grades for individual students and sort them into grade averages for the teacher
 
 #include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+const int maxTestScores = 5;
+
+    
 
 int main()
 {
