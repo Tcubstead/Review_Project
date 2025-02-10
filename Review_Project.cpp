@@ -1,5 +1,7 @@
-// Review_Project.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//Thomas Cubstead
+//2-10-25
+//Review_Project
+//main
 
 #include <iostream>
 
