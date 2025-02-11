@@ -10,6 +10,7 @@
 #include <string>
 using namespace std;
 
+//global const of teast scores on file
 const int maxTestScores = 5;
 
 int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]);
@@ -18,13 +19,14 @@ char letterGrade(double averages);
 void reportCard(string names[], double averages[], int numStudents);
 
 int main() {
-    ifstream inputFile("studentGrades.text");
+    ifstream inputFile("StudentGrades.txt");
 
     if (!inputFile) {
         cerr << "error opening file" << endl;
         return 1;
     }
 
+    //arrays to store names, grades, and averages
     string names[100];
     int scores[100][maxTestScores];
     double averages[100];
@@ -52,6 +54,7 @@ int readInfo(ifstream &inputFile, string names, int scores[][maxTestScores]) {
     return numStudents;
 }
 
+//function to read the info from the file
 int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]) {
     int numStudents = 0;
     while (inputFile >> numStudents[names]) {
@@ -83,6 +86,7 @@ char letterGrade(double average) {
     else return 'F';
 }
 
+//function to show the results of grade averages for each student
 void reportCard(string names[], double averages[], int numStudents) {
     cout << left << setw(20) << "student name"
          << setw(10) << "average" << "grade" << endl;
