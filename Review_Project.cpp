@@ -14,7 +14,7 @@ const int maxTestScores = 5;
 
 int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]);
 void averageCalc(int scores[][maxTestScores], double averages[], int numStudents[]);
-char calculateGrade(double averages);
+char letterGrade(double averages);
 void reportCard(string names[], double averages[], int numStudents[]);
 
 int main() {
@@ -44,7 +44,7 @@ int main() {
 int readInfo(ifstream &inputFile, string names, int scores[][maxTestScores]) {
     int numStudents = 0;
     while (inputFile >> names[numStudents]) {
-        for (i = 0; i < maxTestScores; ++i) {
+        for (int i = 0; i < maxTestScores; ++i) {
             inputFile >> scores[numStudents][i];
         }
         numStudents++;
@@ -52,6 +52,25 @@ int readInfo(ifstream &inputFile, string names, int scores[][maxTestScores]) {
     return numStudents;
 }
 
+//function to calculate grade averages
+void averageCalc(int scores[][maxTestScores], double averages[], int numStudents) {
+    for (int i = 0; i < numStudents; ++i) {
+        int total = 0;
+        for (int j = 0; j < maxTestScores; ++j) {
+            total += scores[i][j];
+        }
+        averages[i] = static_cast<double>(total) / maxTestScores;
+    }
+}
+
+//turns the numerical average into a letter grade
+char letterGrade(double average) {
+    if (average >= 90) return 'A';
+    else if (average >= 80) return 'B';
+    else if (average >= 70) return 'C';
+    else if (average >= 60) return 'D';
+    else return 'F';
+}
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
