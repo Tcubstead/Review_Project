@@ -12,12 +12,46 @@ using namespace std;
 
 const int maxTestScores = 5;
 
-    
+int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]);
+void averageCalc(int scores[][maxTestScores], double averages[], int numStudents[]);
+char calculateGrade(double averages);
+void reportCard(string names[], double averages[], int numStudents[]);
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    ifstream inputFile("studentGrades.text");
+
+    if (!inputFile) {
+        cerr << "error opening file" << endl;
+        return 1;
+    }
+
+    string names[100];
+    int scores[100][maxTestScores];
+    double averages[100];
+
+    int numStudents = readInfo(inputFile, names, scores);
+
+    averageCalc(scores, averages, numStudents);
+
+    reportCard(names, averages, numStudents);
+
+    inputFile.close();
+
+    return 0;
 }
+
+//gets the data from the file to be used in sorting and calculations
+int readInfo(ifstream &inputFile, string names, int scores[][maxTestScores]) {
+    int numStudents = 0;
+    while (inputFile >> names[numStudents]) {
+        for (i = 0; i < maxTestScores; ++i) {
+            inputFile >> scores[numStudents][i];
+        }
+        numStudents++;
+    }
+    return numStudents;
+}
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
