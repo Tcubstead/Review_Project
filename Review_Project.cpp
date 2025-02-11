@@ -13,9 +13,9 @@ using namespace std;
 const int maxTestScores = 5;
 
 int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]);
-void averageCalc(int scores[][maxTestScores], double averages[], int numStudents[]);
+void averageCalc(int scores[][maxTestScores], double averages[], int numStudents);
 char letterGrade(double averages);
-void reportCard(string names[], double averages[], int numStudents[]);
+void reportCard(string names[], double averages[], int numStudents);
 
 int main() {
     ifstream inputFile("studentGrades.text");
@@ -52,6 +52,17 @@ int readInfo(ifstream &inputFile, string names, int scores[][maxTestScores]) {
     return numStudents;
 }
 
+int readInfo(ifstream& inputFile, string names[], int scores[][maxTestScores]) {
+    int numStudents = 0;
+    while (inputFile >> numStudents[names]) {
+        for (int i = 0; i < maxTestScores; ++i) {
+            inputFile >> scores[numStudents][i];
+        }
+        numStudents++;
+    }
+    return numStudents;
+}
+
 //function to calculate grade averages
 void averageCalc(int scores[][maxTestScores], double averages[], int numStudents) {
     for (int i = 0; i < numStudents; ++i) {
@@ -70,6 +81,18 @@ char letterGrade(double average) {
     else if (average >= 70) return 'C';
     else if (average >= 60) return 'D';
     else return 'F';
+}
+
+void reportCard(string names[], double averages[], int numStudents) {
+    cout << left << setw(20) << "student name"
+         << setw(10) << "average" << "grade" << endl;
+    cout << string(40, '-') << endl;
+
+    for (int i = 0; i < numStudents; ++i) {
+        char grade = letterGrade(averages[i]);
+        cout << left << setw(20) << names[i] << setw(10) << fixed << setprecision(2) 
+             << averages[i] << grade << endl;
+    }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
